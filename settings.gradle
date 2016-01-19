@@ -1,0 +1,4 @@
+include ':spring-boot-webapp', ':web-frontend', ':followfa-protocol', ':libfollowfa-java', ':postings-command', ':postings-query',
+		':followfa-common'
+
+rootProject.name = 'followfa'

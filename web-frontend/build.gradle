@@ -1,0 +1,19 @@
+buildscript {
+	ext {
+		springBootVersion = '1.3.0.RELEASE'
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'spring-boot'
+
+dependencies {
+	compile project(':postings-command')
+	compile project(':postings-query')
+
+	compile 'org.springframework.boot:spring-boot-starter'
+	compile 'org.springframework.boot:spring-boot-starter-web'
+	compile "org.springframework.boot:spring-boot-starter-thymeleaf"
+}

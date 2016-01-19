@@ -1,0 +1,18 @@
+@import "defaults";
+
+.buttons {
+  padding: 0.5em 0 0 0;
+  text-align: right;
+}
+
+.button {
+  border: 2px solid $alternate-color1-dark;
+  background: linear-gradient($alternate-color1-highlight, $alternate-color1-highlight, $alternate-color1-dark);
+
+  padding: 0.25em 1.5em;
+  border-radius: 3px;
+
+  color: $standard-color-dark;
+  text-decoration: none;
+}
+

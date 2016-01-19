@@ -1,0 +1,101 @@
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,800|Nova+Mono);
+* {
+  box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0;
+  background: white;
+  color: #111133;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400; }
+
+strong, b {
+  font-weight: 800; }
+
+code, pre {
+  font-family: 'Nova Mono', monospace; }
+
+h1, h2, h3, h4, h5, h6 {
+  color: #FDA837;
+  text-shadow: 1px 1px #111133;
+  font-weight: 800; }
+
+h1 {
+  font-size: 200%; }
+
+h2 {
+  font-size: 150%; }
+
+h3 {
+  font-size: 125%; }
+
+h4 {
+  font-size: 110%; }
+
+a {
+  color: #4444cc; }
+
+header, footer {
+  height: 2.5em;
+  padding: 4px 1em;
+  background: #111133;
+  color: #e6e6ff; }
+  header i, footer i {
+    font-size: 150% !important; }
+  header a, footer a {
+    color: #e6e6ff; }
+  header a:hover i, footer a:hover i {
+    text-shadow: 0px 0px 3px white; }
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-bottom: 1px solid #4444cc;
+  box-shadow: 0px 1px 3px 3px rgba(0, 0, 0, 0.7); }
+
+.main-section {
+  margin: 3.5em 1em 2.5em 0em; }
+
+.grid-item {
+  padding: 0em 0em 1em 1em; }
+
+.grid-sizer, .grid-item {
+  width: 25%; }
+
+.buttons {
+  padding: 0.5em 0 0 0;
+  text-align: right; }
+
+.button {
+  border: 2px solid #985E0F;
+  background: linear-gradient(#FDA837, #FDA837, #985E0F);
+  padding: 0.25em 1.5em;
+  border-radius: 3px;
+  color: #111133;
+  text-decoration: none; }
+
+.editor {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: none; }
+
+.editor-frame {
+  width: calc(100% - 4em);
+  max-width: 35em;
+  margin: 4em auto 2em auto;
+  padding: 1em 2em;
+  border: 2px solid #111133;
+  background: white; }
+
+.editor-frame textarea {
+  width: 100%;
+  height: 20em; }
+
+/*# sourceMappingURL=style.css.map */
