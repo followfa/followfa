@@ -6,6 +6,6 @@ import org.springframework.stereotype.Service;
 @Service
 class PostingTranslator {
 	public PostingViewModel translate(final Posting posting) {
-		return null;
+		return new PostingViewModel(posting.getPostingText());
 	}
 }

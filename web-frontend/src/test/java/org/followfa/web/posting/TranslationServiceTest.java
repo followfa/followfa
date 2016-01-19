@@ -37,10 +37,10 @@ public class TranslationServiceTest {
 
 	@Test
 	public void usesPostingTranslatorToActuallyTranslatePostings() {
-		when(queryPostingService.listPostingsFor(eq(1L), anyLong())).thenReturn(Arrays.asList(new Posting()));
+		when(queryPostingService.listPostingsForCurrentUser(eq(1L), anyLong())).thenReturn(Arrays.asList(new Posting("Foobar", 1L)));
 		when(postingTranslator.translate(any())).thenReturn(new PostingViewModel("Hello World"));
 
-		final List<PostingViewModel> postings = translationService.getNewestPostingsFor(1L, 50L).collect(Collectors.toList());
+		final List<PostingViewModel> postings = translationService.getNewestPostingsForCurrentUser(1L, 50L).collect(Collectors.toList());
 
 		assertNotNull(postings);
 		assertThat(postings.size(), is(1));

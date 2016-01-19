@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Repository
-public class DatabasePostingEventRepository implements PostingEventRepository {
+class DatabasePostingEventRepository implements PostingEventRepository {
 	private EntityManager entityManager;
 
 	@PersistenceContext

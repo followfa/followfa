@@ -27,7 +27,7 @@ public class HomeController {
 		Map<String, Object> model = new HashMap<>();
 
 		model.put("newPosting", new PostingViewModel());
-		model.put("postings", postingTranslationService.getNewestPostingsFor(1L, 50L));
+		model.put("postings", postingTranslationService.getNewestPostingsForCurrentUser(1L, 50L));
 
 		return new ModelAndView("index", model);
 	}

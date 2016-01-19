@@ -31,7 +31,7 @@ class TranslationService implements PostingTranslationService {
 	}
 
 	@Override
-	public Stream<PostingViewModel> getNewestPostingsFor(final long userId, final long maxResults) {
-		return queryPostingsService.listPostingsFor(userId, maxResults).stream().map(postingTranslator::translate);
+	public Stream<PostingViewModel> getNewestPostingsForCurrentUser(final long userId, final long maxResults) {
+		return queryPostingsService.listPostingsForCurrentUser(userId, maxResults).stream().map(postingTranslator::translate);
 	}
 }

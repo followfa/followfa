@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -50,7 +49,7 @@ public class HomeControllerTest {
 
 	@Test
 	public void listsAllPostingsOfTheUser_WhenAccessingTheMainView_AndTheUserIsLoggedIn() {
-		when(postingTranslationService.getNewestPostingsFor(eq(1L), anyLong())).thenReturn(Stream.of(new PostingViewModel("Hello World")));
+		when(postingTranslationService.getNewestPostingsForCurrentUser(eq(1L), anyLong())).thenReturn(Stream.of(new PostingViewModel("Hello World")));
 		final ModelAndView indexModelAndView = homeController.index();
 
 		List<PostingViewModel> postings = ((Stream<PostingViewModel>) indexModelAndView.getModel().get("postings")).collect(Collectors.toList());
