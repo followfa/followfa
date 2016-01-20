@@ -2,6 +2,7 @@ package org.followfa.postings.command.event;
 
 import net.davidtanzer.jobjectformatter.ObjectFormatter;
 import net.davidtanzer.jobjectformatter.annotations.*;
+import org.followfa.postings.query.UserPostingEvent;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +10,7 @@ import javax.persistence.Id;
 import java.sql.Timestamp;
 
 @Entity
-public class PostingEvent {
+public class PostingEvent implements UserPostingEvent {
 	@Id
 	@GeneratedValue
 	@FormattedField(transitive = FormattedFieldType.DEFAULT)

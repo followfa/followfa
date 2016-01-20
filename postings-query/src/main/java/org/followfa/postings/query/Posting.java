@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import java.sql.Timestamp;
 
 @Entity
-public class Posting {
+public class Posting implements QueriedPosting {
 	@Id
 	@GeneratedValue
 	private Long postingId;

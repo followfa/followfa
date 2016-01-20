@@ -10,9 +10,6 @@ buildscript {
 apply plugin: 'spring-boot'
 
 dependencies {
-	compile project(':postings-command')
-	compile project(':postings-query')
-
 	compile 'org.springframework.boot:spring-boot-starter'
 	compile 'org.springframework.boot:spring-boot-starter-web'
 	compile "org.springframework.boot:spring-boot-starter-thymeleaf"

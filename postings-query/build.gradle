@@ -10,7 +10,8 @@ buildscript {
 apply plugin: 'spring-boot'
 
 dependencies {
-	compile project(':postings-command')
+	compile project(':web-frontend')
+	compile project(':followfa-common')
 
 	compile 'org.springframework.boot:spring-boot-starter'
 	compile 'org.springframework.boot:spring-boot-starter-data-jpa'

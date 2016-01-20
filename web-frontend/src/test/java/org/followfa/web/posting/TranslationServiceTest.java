@@ -1,7 +1,7 @@
 package org.followfa.web.posting;
 
 import org.followfa.postings.command.CreatePostingService;
-import org.followfa.postings.query.Posting;
+import org.followfa.postings.query.QueriedPosting;
 import org.followfa.postings.query.QueryPostingsService;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,7 +37,9 @@ public class TranslationServiceTest {
 
 	@Test
 	public void usesPostingTranslatorToActuallyTranslatePostings() {
-		when(queryPostingService.listPostingsForCurrentUser(eq(1L), anyLong())).thenReturn(Arrays.asList(new Posting("Foobar", 1L)));
+		final QueriedPosting queriedPosting = mock(QueriedPosting.class);
+
+		when(queryPostingService.listPostingsForCurrentUser(eq(1L), anyLong())).thenReturn((List)Arrays.asList(queriedPosting));
 		when(postingTranslator.translate(any())).thenReturn(new PostingViewModel("Hello World"));
 
 		final List<PostingViewModel> postings = translationService.getNewestPostingsForCurrentUser(1L, 50L).collect(Collectors.toList());

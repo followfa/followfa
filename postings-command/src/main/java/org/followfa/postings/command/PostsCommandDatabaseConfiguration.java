@@ -38,7 +38,7 @@ public class PostsCommandDatabaseConfiguration {
 	}
 
 	@Bean
-	public DataSource datasource() {
+	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource(databaseUrl, databaseUserName, databasePassword);
 		dataSource.setDriverClassName(databaseDriverClassName);
 		return dataSource;
@@ -47,7 +47,7 @@ public class PostsCommandDatabaseConfiguration {
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-		em.setDataSource(datasource());
+		em.setDataSource(dataSource());
 		em.setPackagesToScan(new String[] { "org.followfa.postings.command" });
 
 		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();

@@ -11,7 +11,9 @@ public class FlywayMigrationConfiguration {
 		flyway.setLocations("dbschema/postings-command/common", "dbschema/postings-command/h2");
 		flyway.setTable("postings_command_schema_version");
 		flyway.setDataSource(datasource);
+
 		flyway.migrate();
+
 		return flyway;
 	}
 
