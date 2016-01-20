@@ -4,7 +4,7 @@ import org.followfa.defensive.Args;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.concurrent.ExecutorService;
+import java.util.concurrent.*;
 
 @Service
 public class WaitForOperationService {
@@ -19,5 +19,18 @@ public class WaitForOperationService {
 
 	public void executeAndWait(Runnable runnable, long timeout) {
 		Args.notNull(runnable, "runnable");
+
+		final Future<?> future = executor.submit(runnable);
+
+		try {
+			future.get(timeout, TimeUnit.MILLISECONDS);
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+			throw new IllegalStateException("Interrupted when waiting for a result", e);
+		} catch (ExecutionException e) {
+			throw new IllegalStateException("Runnable for executeAndWait threw an error", e.getCause());
+		} catch (TimeoutException e) {
+			//This is OK, we simply return here. The timeout was (more or less) expected.
+		}
 	}
 }
