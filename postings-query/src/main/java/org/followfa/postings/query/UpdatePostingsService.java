@@ -1,9 +1,9 @@
 package org.followfa.postings.query;
 
 import org.followfa.cancellable.WaitForOperationService;
+import org.followfa.defensive.Args;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
 
 @Service
 class UpdatePostingsService {
@@ -12,8 +12,8 @@ class UpdatePostingsService {
 
 	@Autowired
 	public UpdatePostingsService(final PostingEventsListService postingEventsListService, final WaitForOperationService waitForOperationService) {
-		Assert.notNull(postingEventsListService, "postingEventsListService must not be null.");
-		Assert.notNull(waitForOperationService, "waitForOperationService must not be null.");
+		Args.notNull(postingEventsListService, "postingEventsListService");
+		Args.notNull(waitForOperationService, "waitForOperationService");
 
 		this.postingEventsListService = postingEventsListService;
 		this.waitForOperationService = waitForOperationService;
