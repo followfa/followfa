@@ -19,7 +19,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-public class PostsCommandDatabaseConfiguration {
+public class PostingsCommandDatabaseConfiguration {
 	@Value("${database.driverClassName}")
 	private String databaseDriverClassName;
 	@Value("${database.url}")
@@ -33,8 +33,8 @@ public class PostsCommandDatabaseConfiguration {
 	private String hibernateDialect;
 
 	@Bean
-	public Flyway flyway(final DataSource dataSource) {
-		return FlywayMigrationConfiguration.migrateDatabaseWithFlyway(dataSource);
+	public Flyway flyway() {
+		return FlywayMigrationConfiguration.migrateDatabaseWithFlyway(dataSource());
 	}
 
 	@Bean

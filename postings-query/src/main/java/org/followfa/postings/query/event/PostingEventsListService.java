@@ -1,4 +1,4 @@
-package org.followfa.postings.query;
+package org.followfa.postings.query.event;
 
 import java.util.List;
 

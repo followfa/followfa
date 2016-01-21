@@ -1,7 +1,8 @@
-package org.followfa.postings.query;
+package org.followfa.postings.query.posting;
 
-import org.followfa.cancellable.WaitForOperationService;
 import org.followfa.defensive.Args;
+import org.followfa.postings.query.event.PostingEventsListService;
+import org.followfa.postings.query.event.UserPostingEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,6 +47,6 @@ class UpdatePostingsService {
 				.withPostingText(event.getPostingText())
 				.build();
 
-		postingsRepository.createPosting(posting);
+		postingsRepository.savePosting(posting);
 	}
 }

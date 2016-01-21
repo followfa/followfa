@@ -1,6 +1,6 @@
 package org.followfa.postings.command.event;
 
-import org.followfa.postings.query.EventType;
+import org.followfa.postings.query.event.EventType;
 
 public enum PostingEventType implements EventType {
 	CREATED {

@@ -1,6 +1,11 @@
-package org.followfa.postings.query;
+package org.followfa.postings.query.posting;
 
 import org.followfa.cancellable.WaitForOperationService;
+import org.followfa.postings.query.event.EventType;
+import org.followfa.postings.query.event.PostingEventsListService;
+import org.followfa.postings.query.event.UserPostingEvent;
+import org.followfa.postings.query.posting.PostingsRepository;
+import org.followfa.postings.query.posting.UpdatePostingsService;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -54,11 +59,11 @@ public class UpdatePostingsServiceTest {
 
 		updatePostingsService.fetchAndUpdatePostingsFor(1L);
 
-		verify(postingsRepository).createPosting(argThat(allOf(
+		verify(postingsRepository).savePosting(argThat(allOf(
 				hasProperty("lastPostingEventId", is(11L)),
 				hasProperty("postingText", is("Posting 1"))
 		)));
-		verify(postingsRepository).createPosting(argThat(allOf(
+		verify(postingsRepository).savePosting(argThat(allOf(
 				hasProperty("lastPostingEventId", is(12L)),
 				hasProperty("postingText", is("Posting 2"))
 		)));

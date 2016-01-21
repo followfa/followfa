@@ -1,5 +1,5 @@
 CREATE TABLE Posting (
-	postingId BIGINT PRIMARY KEY,
+	postingId BIGINT PRIMARY KEY AUTO_INCREMENT,
 
 	userId BIGINT,
 	createdAt TIMESTAMP,
@@ -9,3 +9,8 @@ CREATE TABLE Posting (
 
 	postingText CLOB
 );
+
+CREATE TABLE LastPostingEventIdByUser (
+	userId BIGINT PRIMARY KEY,
+	lastPostingEventId BIGINT
+)

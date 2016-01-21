@@ -1,7 +1,8 @@
-package org.followfa.postings.query;
+package org.followfa.postings.query.posting;
 
 import org.followfa.cancellable.WaitForOperationService;
 import org.followfa.defensive.Args;
+import org.followfa.postings.query.QueryPostingsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

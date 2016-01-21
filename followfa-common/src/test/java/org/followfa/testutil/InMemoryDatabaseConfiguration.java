@@ -27,7 +27,7 @@ public class InMemoryDatabaseConfiguration {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
 		em.setDataSource(datasource());
-		em.setPackagesToScan(new String[] { "org.followfa.postings.command" });
+		em.setPackagesToScan(new String[] { "org.followfa" });
 
 		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		em.setJpaVendorAdapter(vendorAdapter);

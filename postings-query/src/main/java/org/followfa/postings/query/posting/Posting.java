@@ -1,10 +1,10 @@
-package org.followfa.postings.query;
+package org.followfa.postings.query.posting;
 
-import net.davidtanzer.auto_tostring.values_info.ByClassValueInfo;
 import net.davidtanzer.jobjectformatter.ObjectFormatter;
 import net.davidtanzer.jobjectformatter.annotations.Formatted;
 import net.davidtanzer.jobjectformatter.annotations.FormattedInclude;
 import net.davidtanzer.jobjectformatter.annotations.TransitiveInclude;
+import org.followfa.postings.query.QueriedPosting;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import java.sql.Timestamp;
 
 @Entity
-public class Posting implements QueriedPosting {
+class Posting implements QueriedPosting {
 	@Id
 	@GeneratedValue
 	private Long postingId;

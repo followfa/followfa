@@ -4,7 +4,7 @@ import org.followfa.defensive.Args;
 import org.followfa.postings.command.event.PostingEvent;
 import org.followfa.postings.command.event.PostingEventRepository;
 import org.followfa.postings.command.event.PostingEventType;
-import org.followfa.postings.query.PostingEventsListService;
+import org.followfa.postings.query.event.PostingEventsListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

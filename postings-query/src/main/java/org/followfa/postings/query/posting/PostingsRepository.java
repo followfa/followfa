@@ -1,13 +1,13 @@
-package org.followfa.postings.query;
+package org.followfa.postings.query.posting;
 
 import java.util.List;
 
-public interface PostingsRepository {
+interface PostingsRepository {
 	List<Posting> listPostingsForUser(long userId, long maxResults);
 
-	long getLastPostingEventIdFor(long userId);
+	Long getLastPostingEventIdFor(long userId);
 
-	void createPosting(Posting posting);
+	void savePosting(Posting posting);
 
 	void setLastPostingEventIdFor(long userId, long lastPostingEventId);
 }

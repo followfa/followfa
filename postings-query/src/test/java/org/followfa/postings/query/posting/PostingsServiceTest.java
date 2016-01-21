@@ -1,6 +1,10 @@
-package org.followfa.postings.query;
+package org.followfa.postings.query.posting;
 
 import org.followfa.cancellable.WaitForOperationService;
+import org.followfa.postings.query.posting.Posting;
+import org.followfa.postings.query.posting.PostingsRepository;
+import org.followfa.postings.query.posting.PostingsService;
+import org.followfa.postings.query.posting.UpdatePostingsService;
 import org.junit.Before;
 import org.junit.Test;
 
