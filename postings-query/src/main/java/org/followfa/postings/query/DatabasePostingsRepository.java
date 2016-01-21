@@ -10,4 +10,19 @@ class DatabasePostingsRepository implements PostingsRepository {
 	public List<Posting> listPostingsForUser(final long userId, final long maxResults) {
 		return null;
 	}
+
+	@Override
+	public long getLastPostingEventIdFor(final long userId) {
+		return 0;
+	}
+
+	@Override
+	public void createPosting(final Posting posting) {
+
+	}
+
+	@Override
+	public void setLastPostingEventIdFor(final long userId, final long lastPostingEventId) {
+
+	}
 }

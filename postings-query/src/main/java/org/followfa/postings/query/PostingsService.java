@@ -1,5 +1,6 @@
 package org.followfa.postings.query;
 
+import org.followfa.cancellable.WaitForOperationService;
 import org.followfa.defensive.Args;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,19 +13,24 @@ import static org.followfa.defensive.ReturnValue.notNull;
 class PostingsService implements QueryPostingsService {
 	private final UpdatePostingsService updatePostingsService;
 	private final PostingsRepository postingsRepository;
+	private final WaitForOperationService waitForOperationService;
 
 	@Autowired
-	public PostingsService(final UpdatePostingsService updatePostingsService, final PostingsRepository postingsRepository) {
+	public PostingsService(final UpdatePostingsService updatePostingsService, final PostingsRepository postingsRepository,
+			final WaitForOperationService waitForOperationService) {
 		Args.notNull(updatePostingsService, "updatePostingsService");
 		Args.notNull(postingsRepository, "postingsRepository");
+		Args.notNull(waitForOperationService, "waitForOperationService");
 
 		this.updatePostingsService = updatePostingsService;
 		this.postingsRepository = postingsRepository;
+		this.waitForOperationService = waitForOperationService;
 	}
 
 	@Override
 	public List<Posting> listPostingsForCurrentUser(final long userId, final long maxResults) {
-		updatePostingsService.updatePostingsOfUser(userId);
+		waitForOperationService.executeAndWait(() -> updatePostingsService.fetchAndUpdatePostingsFor(userId), 500L);
+
 		List<Posting> postings = postingsRepository.listPostingsForUser(userId, maxResults);
 
 		return notNull(postings);

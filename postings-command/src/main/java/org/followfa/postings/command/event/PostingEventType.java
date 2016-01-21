@@ -1,5 +1,12 @@
 package org.followfa.postings.command.event;
 
-public enum PostingEventType {
-	CREATED
+import org.followfa.postings.query.EventType;
+
+public enum PostingEventType implements EventType {
+	CREATED {
+		@Override
+		public void onEventType(final Runnable onCreated) {
+			onCreated.run();
+		}
+	}
 }

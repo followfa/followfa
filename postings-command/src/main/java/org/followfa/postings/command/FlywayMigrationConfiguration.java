@@ -9,7 +9,7 @@ public class FlywayMigrationConfiguration {
 	public static Flyway migrateDatabaseWithFlyway(final DataSource datasource) {
 		final Flyway flyway = new Flyway();
 		flyway.setLocations("dbschema/postings-command/common", "dbschema/postings-command/h2");
-		flyway.setTable("postings_command_schema_version");
+		//flyway.setTable("postings_command_schema_version"); FIXME do we need this???
 		flyway.setDataSource(datasource);
 
 		flyway.migrate();
