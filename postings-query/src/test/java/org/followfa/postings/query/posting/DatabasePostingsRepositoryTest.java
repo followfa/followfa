@@ -79,10 +79,8 @@ public class DatabasePostingsRepositoryTest {
 
 		assertNotNull(postings);
 		assertThat(postings.size(), is(1));
-		assertThat(postings.get(0), allOf(
-				hasProperty("userId", is(4L)),
-				hasProperty("postingText", is("Hello World"))
-		));
+		assertThat(postings.get(0).getUserId(), is(4L));
+		assertThat(postings.get(0).getPostingText(), is("Hello World"));
 	}
 
 	@Import(InMemoryDatabaseConfiguration.class)

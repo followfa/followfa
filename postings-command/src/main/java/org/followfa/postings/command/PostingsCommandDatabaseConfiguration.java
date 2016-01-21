@@ -1,6 +1,7 @@
 package org.followfa.postings.command;
 
 import org.flywaydb.core.Flyway;
+import org.followfa.DatabaseConfiguration;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,56 +19,10 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@EnableTransactionManagement
+@Import(DatabaseConfiguration.class)
 public class PostingsCommandDatabaseConfiguration {
-	@Value("${database.driverClassName}")
-	private String databaseDriverClassName;
-	@Value("${database.url}")
-	private String databaseUrl;
-	@Value("${database.username}")
-	private String databaseUserName;
-	@Value("${database.password}")
-	private String databasePassword;
-
-	@Value("${database.hibernateDialect}")
-	private String hibernateDialect;
-
 	@Bean
-	public Flyway flyway() {
-		return FlywayMigrationConfiguration.migrateDatabaseWithFlyway(dataSource());
-	}
-
-	@Bean
-	public DataSource dataSource() {
-		DriverManagerDataSource dataSource = new DriverManagerDataSource(databaseUrl, databaseUserName, databasePassword);
-		dataSource.setDriverClassName(databaseDriverClassName);
-		return dataSource;
-	}
-
-	@Bean
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-		em.setDataSource(dataSource());
-		em.setPackagesToScan(new String[] { "org.followfa.postings.command" });
-
-		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-		em.setJpaVendorAdapter(vendorAdapter);
-		em.setJpaProperties(additionalProperties());
-
-		return em;
-	}
-
-	@Bean
-	public PlatformTransactionManager transactionManager(EntityManagerFactory emf){
-		JpaTransactionManager transactionManager = new JpaTransactionManager();
-		transactionManager.setEntityManagerFactory(emf);
-
-		return transactionManager;
-	}
-
-	Properties additionalProperties() {
-		Properties properties = new Properties();
-		properties.setProperty("hibernate.dialect", hibernateDialect);
-		return properties;
+	public Flyway flywayForPostingsCommand(final DataSource dataSource) {
+		return FlywayMigrationConfiguration.migrateDatabaseWithFlyway(dataSource);
 	}
 }

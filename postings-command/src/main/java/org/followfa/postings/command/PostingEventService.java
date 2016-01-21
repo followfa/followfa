@@ -32,7 +32,7 @@ class PostingEventService implements CreatePostingService, PostingEventsListServ
 	}
 
 	@Override
-	public List<PostingEvent> listNewestEventsForUser(final long userId, long lastEventId) {
+	public List<PostingEvent> listNewestEventsForUser(final long userId, Long lastEventId) {
 		final List<PostingEvent> postingEvents = null;
 
 		return notNull(postingEvents);

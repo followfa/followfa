@@ -1,5 +1,6 @@
 package org.followfa;
 
+import org.flywaydb.core.Flyway;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -25,5 +26,10 @@ public class FollowfaWebappApplication {
 		ThreadPoolExecutor executorService = new ThreadPoolExecutor(CORE_POOL_SIZE, MAXIMUM_POOL_SIZE, KEEP_ALIVE_TIME, TimeUnit.MILLISECONDS,
 				new LinkedBlockingDeque<>(QUEUE_CAPACITY), new ThreadPoolExecutor.CallerRunsPolicy());
 		return executorService;
+	}
+
+	@Bean
+	public Flyway flyway() {
+		return new Flyway();
 	}
 }

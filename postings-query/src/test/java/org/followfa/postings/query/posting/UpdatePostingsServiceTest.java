@@ -6,6 +6,9 @@ import org.followfa.postings.query.event.PostingEventsListService;
 import org.followfa.postings.query.event.UserPostingEvent;
 import org.followfa.postings.query.posting.PostingsRepository;
 import org.followfa.postings.query.posting.UpdatePostingsService;
+import org.hamcrest.BaseMatcher;
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -59,14 +62,26 @@ public class UpdatePostingsServiceTest {
 
 		updatePostingsService.fetchAndUpdatePostingsFor(1L);
 
-		verify(postingsRepository).savePosting(argThat(allOf(
-				hasProperty("lastPostingEventId", is(11L)),
-				hasProperty("postingText", is("Posting 1"))
-		)));
-		verify(postingsRepository).savePosting(argThat(allOf(
-				hasProperty("lastPostingEventId", is(12L)),
-				hasProperty("postingText", is("Posting 2"))
-		)));
+		verify(postingsRepository).savePosting(argThat(isPostingWith(11L, "Posting 1")));
+		verify(postingsRepository).savePosting(argThat(isPostingWith(12L, "Posting 2")));
+	}
+
+	private Matcher<Posting> isPostingWith(final long lastPostingEventId, final String postingText) {
+		return new BaseMatcher<Posting>() {
+			@Override
+			public boolean matches(final Object item) {
+				if(item instanceof Posting) {
+					return ((Posting) item).getLastPostingEventId() == lastPostingEventId &&
+							((Posting) item).getPostingText().equals(postingText);
+				}
+				return false;
+			}
+
+			@Override
+			public void describeTo(final Description description) {
+				description.appendText("Posting with lastPostingEventId="+lastPostingEventId+" and postingText="+postingText);
+			}
+		};
 	}
 
 	@Test
