@@ -1,6 +1,7 @@
-package org.followfa.postings.command;
+package org.followfa.postings.command.event;
 
 import org.followfa.defensive.Args;
+import org.followfa.postings.command.CreatePostingService;
 import org.followfa.postings.command.event.PostingEvent;
 import org.followfa.postings.command.event.PostingEventRepository;
 import org.followfa.postings.command.event.PostingEventType;
@@ -33,7 +34,7 @@ class PostingEventService implements CreatePostingService, PostingEventsListServ
 
 	@Override
 	public List<PostingEvent> listNewestEventsForUser(final long userId, Long lastEventId) {
-		final List<PostingEvent> postingEvents = null;
+		final List<PostingEvent> postingEvents = postingEventRepository.getPostingEventsFor(userId, lastEventId);
 
 		return notNull(postingEvents);
 	}

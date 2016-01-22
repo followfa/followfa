@@ -1,5 +1,9 @@
 package org.followfa.postings.command.event;
 
-public interface PostingEventRepository {
+import java.util.List;
+
+interface PostingEventRepository {
 	void addPostingEvent(PostingEvent postingEvent);
+
+	List<PostingEvent> getPostingEventsFor(long userId, Long lastPostingEventId);
 }
