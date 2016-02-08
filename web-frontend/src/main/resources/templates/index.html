@@ -11,25 +11,9 @@
 	</header>
 	<section class="main-section grid">
 		<div class="grid-sizer"></div>
-		<div class="grid-item">
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		<div th:each="posting : ${postings}" class="grid-item">
+			<div th:text="${posting.postingText}">Posting Text</div>
 		</div>
-		<div class="grid-item" style="height: 150px;">2</div>
-		<div class="grid-item" style="height: 100px;">3</div>
-		<div class="grid-item" style="height: 200px;">4</div>
-		<div class="grid-item" style="height: 150px;">5</div>
-		<div class="grid-item" style="height: 400px;">6</div>
-		<div class="grid-item" style="height: 300px;">7</div>
-		<div class="grid-item" style="height: 100px;">8</div>
-		<div class="grid-item" style="height: 200px;">9</div>
-		<div class="grid-item" style="height: 500px;">10</div>
-		<div class="grid-item" style="height: 120px;">11</div>
-		<div class="grid-item" style="height: 270px;">12</div>
 	</section>
 
 	<section class="editor" id="posting-editor">

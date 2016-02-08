@@ -42,7 +42,7 @@ public class PostingsServiceTest {
 
 	@Test
 	public void triesToUpdatePostings_WhenListingPostingsForCurrentUser() {
-		postingsService.listPostingsForCurrentUser(1L, 50L);
+		postingsService.listPostingsForCurrentUser(1L, 50);
 
 		verify(updatePostingsService).fetchAndUpdatePostingsFor(eq(1L));
 	}
@@ -53,9 +53,9 @@ public class PostingsServiceTest {
 				.withPostingText("Hello World")
 				.withUserId(1L)
 				.build();
-		when(postingsRepository.listPostingsForUser(eq(1L), anyLong())).thenReturn(Arrays.asList(posting));
+		when(postingsRepository.listPostingsForUser(eq(1L), anyInt())).thenReturn(Arrays.asList(posting));
 
-		final List<Posting> postings = postingsService.listPostingsForCurrentUser(1L, 50L);
+		final List<Posting> postings = postingsService.listPostingsForCurrentUser(1L, 50);
 
 		assertNotNull(postings);
 		assertThat(postings.size(), is(1));

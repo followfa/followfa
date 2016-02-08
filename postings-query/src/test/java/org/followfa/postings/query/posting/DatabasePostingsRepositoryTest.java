@@ -19,6 +19,7 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.hasProperty;
 import static org.junit.Assert.*;
 
@@ -81,6 +82,30 @@ public class DatabasePostingsRepositoryTest {
 		assertThat(postings.size(), is(1));
 		assertThat(postings.get(0).getUserId(), is(4L));
 		assertThat(postings.get(0).getPostingText(), is("Hello World"));
+	}
+
+	@Test
+	public void listsPostingsForUsers() {
+		final EntityManager em = entityManagerFactory.createEntityManager();
+		em.getTransaction().begin();
+		Posting posting1 = new Posting.Builder()
+				.withUserId(5L)
+				.withPostingText("Hello 1")
+				.build();
+		em.persist(posting1);
+		Posting posting2 = new Posting.Builder()
+				.withUserId(5L)
+				.withPostingText("Hello 2")
+				.build();
+		em.persist(posting2);
+		em.getTransaction().commit();
+
+		final List<Posting> postings = repository.listPostingsForUser(5L, 50);
+
+		assertThat(postings.size(), is(2));
+		assertThat(postings, contains(
+				hasProperty("postingText", is("Hello 2")),
+				hasProperty("postingText", is("Hello 1"))));
 	}
 
 	@Import(InMemoryDatabaseConfiguration.class)

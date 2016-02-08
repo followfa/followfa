@@ -8,13 +8,20 @@ import javax.persistence.LockModeType;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
+import static org.followfa.defensive.ReturnValue.notNull;
+
 @Repository
 class DatabasePostingsRepository implements PostingsRepository {
 	private EntityManager entityManager;
 
 	@Override
-	public List<Posting> listPostingsForUser(final long userId, final long maxResults) {
-		return null;
+	public List<Posting> listPostingsForUser(final long userId, final int maxResults) {
+		List postings = entityManager.createQuery("from Posting p where p.userId = :userId order by p.postingId desc")
+				.setParameter("userId", userId)
+				.setMaxResults(maxResults)
+				.getResultList();
+
+		return notNull(postings);
 	}
 
 	@Override

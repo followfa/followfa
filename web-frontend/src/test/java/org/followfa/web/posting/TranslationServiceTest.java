@@ -14,9 +14,7 @@ import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.hasProperty;
 import static org.junit.Assert.*;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyLong;
-import static org.mockito.Matchers.eq;
+import static org.mockito.Matchers.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -39,10 +37,10 @@ public class TranslationServiceTest {
 	public void usesPostingTranslatorToActuallyTranslatePostings() {
 		final QueriedPosting queriedPosting = mock(QueriedPosting.class);
 
-		when(queryPostingService.listPostingsForCurrentUser(eq(1L), anyLong())).thenReturn((List)Arrays.asList(queriedPosting));
+		when(queryPostingService.listPostingsForCurrentUser(eq(1L), anyInt())).thenReturn((List)Arrays.asList(queriedPosting));
 		when(postingTranslator.translate(any())).thenReturn(new PostingViewModel("Hello World"));
 
-		final List<PostingViewModel> postings = translationService.getNewestPostingsForCurrentUser(1L, 50L).collect(Collectors.toList());
+		final List<PostingViewModel> postings = translationService.getNewestPostingsForCurrentUser(1L, 50).collect(Collectors.toList());
 
 		assertNotNull(postings);
 		assertThat(postings.size(), is(1));

@@ -3,7 +3,7 @@ package org.followfa.postings.query.posting;
 import java.util.List;
 
 interface PostingsRepository {
-	List<Posting> listPostingsForUser(long userId, long maxResults);
+	List<Posting> listPostingsForUser(long userId, int maxResults);
 
 	Long getLastPostingEventIdFor(long userId);
 

@@ -30,6 +30,8 @@ subprojects {
 
 	dependencies {
 		compile 'net.davidtanzer:jobjectformatter:0.2.1'
+		compile 'net.davidtanzer:jimvalue:0.3.0'
+		compile 'net.davidtanzer:jdefensive:0.1.0'
 
 		testCompile 'org.hamcrest:hamcrest-all:1.3'
 		testCompile 'junit:junit:4.11'

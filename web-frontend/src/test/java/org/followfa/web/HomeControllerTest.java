@@ -14,6 +14,7 @@ import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.hasProperty;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
@@ -49,10 +50,10 @@ public class HomeControllerTest {
 
 	@Test
 	public void listsAllPostingsOfTheUser_WhenAccessingTheMainView_AndTheUserIsLoggedIn() {
-		when(postingTranslationService.getNewestPostingsForCurrentUser(eq(1L), anyLong())).thenReturn(Stream.of(new PostingViewModel("Hello World")));
+		when(postingTranslationService.getNewestPostingsForCurrentUser(eq(1L), anyInt())).thenReturn(Stream.of(new PostingViewModel("Hello World")));
 		final ModelAndView indexModelAndView = homeController.index();
 
-		List<PostingViewModel> postings = ((Stream<PostingViewModel>) indexModelAndView.getModel().get("postings")).collect(Collectors.toList());
+		List<PostingViewModel> postings = (List<PostingViewModel>) indexModelAndView.getModel().get("postings");
 		assertThat(postings, hasItem(hasProperty("postingText", is("Hello World"))));
 	}
 }

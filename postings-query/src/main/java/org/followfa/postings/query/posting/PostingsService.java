@@ -29,7 +29,7 @@ class PostingsService implements QueryPostingsService {
 	}
 
 	@Override
-	public List<Posting> listPostingsForCurrentUser(final long userId, final long maxResults) {
+	public List<Posting> listPostingsForCurrentUser(final long userId, final int maxResults) {
 		waitForOperationService.executeAndWait(() -> updatePostingsService.fetchAndUpdatePostingsFor(userId), 500L);
 
 		List<Posting> postings = postingsRepository.listPostingsForUser(userId, maxResults);

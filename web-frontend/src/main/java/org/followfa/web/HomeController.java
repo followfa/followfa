@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static org.followfa.defensive.ReturnValue.notNull;
 
@@ -29,7 +30,7 @@ public class HomeController {
 		Map<String, Object> model = new HashMap<>();
 
 		model.put("newPosting", new PostingViewModel());
-		model.put("postings", postingTranslationService.getNewestPostingsForCurrentUser(1L, 50L));
+		model.put("postings", postingTranslationService.getNewestPostingsForCurrentUser(1L, 50).collect(Collectors.toList()));
 
 		return notNull(new ModelAndView("index", model));
 	}
