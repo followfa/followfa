@@ -1,13 +1,12 @@
 package org.followfa.postings.command.event;
 
+import net.davidtanzer.jdefensive.Returns;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
-
-import static org.followfa.defensive.ReturnValue.notNull;
 
 @Repository
 class DatabasePostingEventRepository implements PostingEventRepository {
@@ -40,6 +39,6 @@ class DatabasePostingEventRepository implements PostingEventRepository {
 					.getResultList();
 		}
 
-		return notNull(events);
+		return Returns.notNull(events);
 	}
 }

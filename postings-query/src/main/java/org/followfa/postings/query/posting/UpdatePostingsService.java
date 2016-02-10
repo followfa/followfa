@@ -1,6 +1,6 @@
 package org.followfa.postings.query.posting;
 
-import org.followfa.defensive.Args;
+import net.davidtanzer.jdefensive.Args;
 import org.followfa.postings.query.event.PostingEventsListService;
 import org.followfa.postings.query.event.UserPostingEvent;
 import org.springframework.beans.factory.annotation.Autowired;

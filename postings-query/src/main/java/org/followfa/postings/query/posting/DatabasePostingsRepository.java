@@ -1,5 +1,6 @@
 package org.followfa.postings.query.posting;
 
+import net.davidtanzer.jdefensive.Returns;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -7,8 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.LockModeType;
 import javax.persistence.PersistenceContext;
 import java.util.List;
-
-import static org.followfa.defensive.ReturnValue.notNull;
 
 @Repository
 class DatabasePostingsRepository implements PostingsRepository {
@@ -21,7 +20,7 @@ class DatabasePostingsRepository implements PostingsRepository {
 				.setMaxResults(maxResults)
 				.getResultList();
 
-		return notNull(postings);
+		return Returns.notNull(postings);
 	}
 
 	@Override

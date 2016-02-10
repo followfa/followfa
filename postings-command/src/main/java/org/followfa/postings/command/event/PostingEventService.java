@@ -1,10 +1,8 @@
 package org.followfa.postings.command.event;
 
-import org.followfa.defensive.Args;
+import net.davidtanzer.jdefensive.Args;
+import net.davidtanzer.jdefensive.Returns;
 import org.followfa.postings.command.CreatePostingService;
-import org.followfa.postings.command.event.PostingEvent;
-import org.followfa.postings.command.event.PostingEventRepository;
-import org.followfa.postings.command.event.PostingEventType;
 import org.followfa.postings.query.event.PostingEventsListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +10,6 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.util.List;
 
-import static org.followfa.defensive.ReturnValue.notNull;
 
 @Service
 class PostingEventService implements CreatePostingService, PostingEventsListService {
@@ -36,6 +33,6 @@ class PostingEventService implements CreatePostingService, PostingEventsListServ
 	public List<PostingEvent> listNewestEventsForUser(final long userId, Long lastEventId) {
 		final List<PostingEvent> postingEvents = postingEventRepository.getPostingEventsFor(userId, lastEventId);
 
-		return notNull(postingEvents);
+		return Returns.notNull(postingEvents);
 	}
 }

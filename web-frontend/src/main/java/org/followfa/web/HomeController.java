@@ -1,6 +1,7 @@
 package org.followfa.web;
 
-import org.followfa.defensive.Args;
+import net.davidtanzer.jdefensive.Args;
+import net.davidtanzer.jdefensive.Returns;
 import org.followfa.web.posting.PostingTranslationService;
 import org.followfa.web.posting.PostingViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static org.followfa.defensive.ReturnValue.notNull;
 
 @Controller
 public class HomeController {
@@ -32,12 +32,12 @@ public class HomeController {
 		model.put("newPosting", new PostingViewModel());
 		model.put("postings", postingTranslationService.getNewestPostingsForCurrentUser(1L, 50).collect(Collectors.toList()));
 
-		return notNull(new ModelAndView("index", model));
+		return Returns.notNull(new ModelAndView("index", model));
 	}
 
 	@RequestMapping("/new-posting")
 	public String newPosting(@ModelAttribute final PostingViewModel newPosting) {
 		postingTranslationService.createNewPosting(1L, newPosting.getPostingText());
-		return notNull("redirect:/");
+		return Returns.notNull("redirect:/");
 	}
 }

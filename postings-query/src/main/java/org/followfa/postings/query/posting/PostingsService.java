@@ -1,14 +1,13 @@
 package org.followfa.postings.query.posting;
 
+import net.davidtanzer.jdefensive.Args;
+import net.davidtanzer.jdefensive.Returns;
 import org.followfa.cancellable.WaitForOperationService;
-import org.followfa.defensive.Args;
 import org.followfa.postings.query.QueryPostingsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-import static org.followfa.defensive.ReturnValue.notNull;
 
 @Service
 class PostingsService implements QueryPostingsService {
@@ -34,6 +33,6 @@ class PostingsService implements QueryPostingsService {
 
 		List<Posting> postings = postingsRepository.listPostingsForUser(userId, maxResults);
 
-		return notNull(postings);
+		return Returns.notNull(postings);
 	}
 }
