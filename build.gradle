@@ -24,9 +24,12 @@ allprojects {
 subprojects {
 	sourceCompatibility = 1.8
 	targetCompatibility = 1.8
-	version = '0.0.1'
 
 	apply plugin: 'java'
+	apply plugin: 'maven'
+
+	version = '0.0.1'
+	group = "org.followfa"
 
 	dependencies {
 		compile 'net.davidtanzer:jobjectformatter:0.2.1'
